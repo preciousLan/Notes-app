@@ -21,3 +21,5 @@ app.use('/api/v1/users', userRouter);
 
 app.use(globalErrorHandler);
 module.exports = app;
+
+npm i express dotenv cors bcrypt jsonwebtoken mongoose multer 
