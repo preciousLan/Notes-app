@@ -23,3 +23,5 @@ app.use(globalErrorHandler);
 module.exports = app;
 
 // npm i express dotenv cors bcrypt jsonwebtoken mongoose multer 
+// npm install --save-dev nodemon
+
