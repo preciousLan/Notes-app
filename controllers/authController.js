@@ -95,7 +95,17 @@ exports.login = catchAsync(async (req, res, next) => {
 
 exports.protect = catchAsync(async (req, res, next) => {
 	//get token from cookies
-  const token = req.cookies.jwt || req.headers.authorization?.split(' ')[1];
+ // 1) Getting token and check of it's there
+  let token;
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith('Bearer')
+  ) {
+    token = req.headers.authorization.split(' ')[1];
+  } else if (req.cookies.jwt) {
+    token = req.cookies.jwt;
+  }
+	
 	if (!token) return next(new AppError('you must be logged in', 401));
 	//verify token
 	const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
